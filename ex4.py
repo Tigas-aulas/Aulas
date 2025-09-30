@@ -5,3 +5,4 @@ B=int(input("Numero B\n"))
 X=(A+B)*15
 
 print(X)
+
