@@ -1,0 +1,8 @@
+
+
+1º
+o primeiro exercício roda um ciclo em que da print a numero de ordem crescente , quando o ciclo apresenta o numero 3 , há uma quebra e pula o resto do código. 
+Resultado = (1, 2, 4, 5)
+
+
+
