@@ -14,5 +14,5 @@ for nome in nomes:
 X=len(mais_curto)
 Y=len(mais_longo)
 
-print(X)
-print(Y)
+print(X,mais_curto)
+print(Y,mais_longo)
