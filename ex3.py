@@ -11,6 +11,8 @@ for nome in nomes:
 
     if len(nome) < len(mais_curto):
         mais_curto = nome
+X=len(mais_curto)
+Y=len(mais_longo)
 
-print(mais_curto)
-print(mais_longo)
+print(X)
+print(Y)
