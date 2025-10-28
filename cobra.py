@@ -9,7 +9,7 @@ pygame.init()
 LARGURA_INICIAL, ALTURA_INICIAL = 600, 400
 LARGURA, ALTURA = LARGURA_INICIAL, ALTURA_INICIAL
 TELA = pygame.display.set_mode((LARGURA, ALTURA))
-pygame.display.set_caption("Snake Game com Cabeça de Imagem")
+pygame.display.set_caption("Snake Game ")
 
 # Cores
 PRETO = (0, 0, 0)
@@ -166,7 +166,7 @@ def main():
 
 # Tela inicial
 TELA.fill(PRETO)
-mostrar_texto("SNAKE GAME CABEÇA IMAGEM", 50, VERDE, (LARGURA//8, ALTURA//3))
+mostrar_texto("SNAKE GAME ", 70, VERDE, (LARGURA//9, ALTURA//3))
 mostrar_texto("Pressione qualquer tecla para começar", 24, BRANCO, (LARGURA//6, ALTURA//2))
 pygame.display.flip()
 
