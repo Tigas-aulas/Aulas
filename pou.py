@@ -9,11 +9,10 @@ pygame.init()
 LARGURA = 400
 ALTURA = 600
 TELA = pygame.display.set_mode((LARGURA, ALTURA))
-pygame.display.set_caption("Pou ")
+pygame.display.set_caption("Pou Escalador")
 
 # Cores
 BRANCO = (255, 255, 255)
-AZUL = (50, 150, 255)
 VERDE = (0, 200, 0)
 
 # FPS
@@ -30,12 +29,16 @@ velocidade_y = 0
 gravidade = 0.5
 forca_pulo = -11
 
-# Plataformas (agora geradas dinamicamente)
-plataformas = [pygame.Rect(200, ALTURA - 40, 100, 20)]
+
+imagem_jogador = pygame.image.load("pou.webp").convert_alpha()
+imagem_jogador = pygame.transform.scale(imagem_jogador, (jogador_largura, jogador_altura))
+
+# Plataformas (geradas aleatoriamente)
+plataformas = [pygame.Rect(300, ALTURA - 40, 200, 20)]
 for i in range(6):
-    x = random.randint(0, LARGURA - 50)
+    x = random.randint(0, LARGURA - 150)
     y = ALTURA - i * 100 - 100
-    plataformas.append(pygame.Rect(x, y, 100, 20))
+    plataformas.append(pygame.Rect(x, y, 50, 20))
 
 pontuacao = 0
 
@@ -49,26 +52,24 @@ while True:
             pygame.quit()
             sys.exit()
 
-    # Teclado — só movimento lateral
+    # Teclado — apenas movimento lateral
     teclas = pygame.key.get_pressed()
     if teclas[pygame.K_LEFT]:
         jogador_x -= 5
     if teclas[pygame.K_RIGHT]:
         jogador_x += 5
 
-
- # Limitar o jogador às bordas da tela
+    # Bloquear nas bordas da tela (sem teletransporte)
     if jogador_x < 0:
         jogador_x = 0
     elif jogador_x + jogador_largura > LARGURA:
         jogador_x = LARGURA - jogador_largura
 
-
     # Gravidade
     velocidade_y += gravidade
     jogador_y += velocidade_y
 
-    # Criar retângulo do jogador
+    # Criar o retângulo do jogador
     jogador = pygame.Rect(round(jogador_x), round(jogador_y), jogador_largura, jogador_altura)
 
     # Colisão com plataformas — pulo automático
@@ -78,7 +79,7 @@ while True:
                 velocidade_y = forca_pulo
                 break
 
-    # Subida (faz plataformas descerem)
+    # Subida (plataformas descem)
     if jogador_y < ALTURA / 3:
         jogador_y += 5
         for p in plataformas:
@@ -92,7 +93,7 @@ while True:
     while len(plataformas) < 7:
         x = random.randint(0, LARGURA - 150)
         y = plataformas[-1].y - random.randint(80, 120)
-        plataformas.append(pygame.Rect(x, y, 150, 20))
+        plataformas.append(pygame.Rect(x, y, 50, 20))
 
     # Game Over se cair
     if jogador_y > ALTURA:
@@ -107,8 +108,8 @@ while True:
     for p in plataformas:
         pygame.draw.rect(TELA, VERDE, p)
 
-    # Jogador (forma oval tipo Pou)
-    pygame.draw.ellipse(TELA, AZUL, jogador)
+    # 🔹 Desenhar o Pou (imagem)
+    TELA.blit(imagem_jogador, (jogador.x, jogador.y))
 
     # Atualizar tela
     pygame.display.flip()
